@@ -3,7 +3,7 @@
 
 {
     'name': 'Create Delivery Order  From Customer Invoice and Auto Validate it',
-    'version': '15.0.0.1.0',
+    'version': '16.0.0.1.0',
     'category': 'Stock',
     'summary': 'Create Delivery Order  From Customer Invoice and Auto Validate it',
     'description': """Create Delivery Order  From Customer Invoice and Auto Validate it""",
@@ -19,7 +19,7 @@
     'demo': [],
     'installable': True,
     'auto_install': True,
-    'price': 0,
+    'price': 15,
     'currency': 'USD',
     'license': "AGPL-3",
 
