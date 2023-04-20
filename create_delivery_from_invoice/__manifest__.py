@@ -19,7 +19,7 @@
     'demo': [],
     'installable': True,
     'auto_install': True,
-    'price': 0,
+    'price': 15,
     'currency': 'USD',
     'license': "AGPL-3",
 
