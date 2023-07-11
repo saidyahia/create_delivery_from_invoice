@@ -19,8 +19,7 @@
                 <field name="payment_reference" position="after">
                     <field name="auto_create_delivery" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
 
-                    <field name="picking_type_id"
-                           attrs="{'invisible': [('move_type','!=','out_invoice')],'required': [('auto_create_delivery','=',True)]}"/>
+                   <field name="picking_type_id" attrs="{'invisible': [('move_type','!=','out_invoice')],'required': [('move_type','=','out_invoice'),('auto_create_delivery','=',True)]}"/>
                     <field name="auto_validate_delivey" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
 
                 </field>
