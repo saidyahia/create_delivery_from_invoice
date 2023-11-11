@@ -8,20 +8,21 @@
             <data>
                 <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
                     <button type="object"
-                            name="action_view_delivery" states="open,paid"
+                            name="action_view_delivery"
                             class="oe_stat_button"
-                            attrs="{'invisible':['|',('state','=','draft'),('delivery_count', '&lt;', 1)]}"
+                            invisible="move_type not in ('out_invoice') or not delivery_count > 0"
                             icon="fa-truck">
                         <field name="delivery_count" string="Delivery Order" widget="statinfo"/>
                     </button>
                 </xpath>
 
                 <field name="payment_reference" position="after">
-                    <field name="auto_create_delivery" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
+                    <field name="auto_create_delivery" invisible="move_type not in ('out_invoice')"/>
 
-                    <field name="picking_type_id"
-                           attrs="{'invisible': [('move_type','!=','out_invoice')],'required': [('auto_create_delivery','=',True)]}"/>
-                    <field name="auto_validate_delivey" attrs="{'invisible': [('move_type','!=','out_invoice')]}"/>
+                    <field name="picking_type_id" invisible="move_type not in ('out_invoice')"
+                           required="move_type not in ('out_invoice')"
+                    />
+                    <field name="auto_validate_delivey" invisible="move_type not in ('out_invoice') "/>
 
                 </field>
 

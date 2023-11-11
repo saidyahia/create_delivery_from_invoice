@@ -10,10 +10,10 @@ class AccountMove(models.Model):
     _inherit = 'account.move'
     picking_ids = fields.One2many('stock.picking', 'invoice_id', string='Pickings')
     delivery_count = fields.Integer(string='Delivery Orders', compute='_compute_picking_ids')
-    picking_type_id = fields.Many2one('stock.picking.type', 'Operation Type',domain=[ ('code', '=', 'outgoing')] ,readonly=True,states={'draft': [('readonly', False)]},)
-    auto_create_delivery = fields.Boolean(default=True,string='Auto Create Delivery',copy=False,   tracking=True,readonly=True,states={'draft': [('readonly', False)]},)
+    picking_type_id = fields.Many2one('stock.picking.type', 'Operation Type',domain=[ ('code', '=', 'outgoing')] ,)
+    auto_create_delivery = fields.Boolean(default=False,string='Auto Create Delivery',copy=False,   tracking=True,)
 
-    auto_validate_delivey = fields.Boolean(default=True,string='Auto Validate Delivery',copy=False,   tracking=True,readonly=True,states={'draft': [('readonly', False)]},)
+    auto_validate_delivey = fields.Boolean(default=False,string='Auto Validate Delivery',copy=False,   tracking=True,)
 
 
     def action_post(self):
@@ -55,11 +55,11 @@ class AccountMove(models.Model):
                         pick.action_confirm()
 
                         pick.action_assign()
-
-                        from odoo.tests import tagged, Form
-                        wiz_act = pick.button_validate()
-                        wiz = Form(self.env[wiz_act['res_model']].with_context(wiz_act['context'])).save()
-                        wiz.process()
+                        pick.button_validate()
+                        # from odoo.tests import tagged, Form
+                        # wiz_act = pick.button_validate()
+                        # wiz = Form(self.env[wiz_act['res_model']].with_context(wiz_act['context'])).save()
+                        # wiz.process()
 
 
         return res
